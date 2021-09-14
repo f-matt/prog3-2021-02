@@ -12,7 +12,7 @@
 	</h:head>
 
 	<h:body>
-		<h4>Gerenciamento de Dependências com Maven</h4>
+		<h2>Gerenciamento de Dependências com Maven</h2>
 	
 		<h:form>
 			Informe o seu nome:
@@ -21,14 +21,16 @@
 			
 			<p:commandButton value="Enviar"
 				update="@form" />
-				
+			
 			<h:panelGroup rendered="#{indexView.nome != null}">
-				<p>#{indexView.mensagem}</p>
+				<p>#{indexView.mensagem}!</p>
 			</h:panelGroup>
+			
+			<hr/>
 			
 			<p>Acesso em: 
 				<h:outputText value="#{indexView.dthrAtual}">
-					<f:convertDateTime type="localDateTime" 
+					<f:convertDateTime type="localDateTime"
 						pattern="dd/MM/yyyy HH:mm:ss" />
 				</h:outputText>
 			</p>
