@@ -12,6 +12,20 @@
 
 	<h:body>
 		<h3>Facelets e Backing Beans</h3>
+		
+		<h:form>
+			Mensagem: <h:inputText id="mensagem" value="#{indexView.mensagem}" />
+			<br/><br/>
+			
+			<h:commandButton value="Enviar"
+				action="#{indexView.atualizaMensagem}">
+				
+				<f:ajax execute="mensagem" render="saida" />
+			</h:commandButton>
+			<br/><br/>
+			
+			<h:outputText id="saida" 
+				value="#{indexView.texto}" />
+		</h:form>
 	</h:body>
-	
 </html>
