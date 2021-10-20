@@ -20,6 +20,10 @@ import javax.persistence.Table;
 		query = "SELECT c "
 				+ "FROM Contato c "
 				+ "WHERE UPPER(c.nome) LIKE :nome")
+@NamedQuery(name = "Contato.findByEmail",
+		query = "SELECT c "
+				+ "FROM Contato c "
+				+ "WHERE UPPER(c.emailPrincipal) = :email")
 public class Contato implements Serializable {
 	
 	private static final long serialVersionUID = 1L;

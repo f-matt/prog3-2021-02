@@ -33,6 +33,8 @@ public class IndexView implements Serializable {
 	
 	private String nomePesquisa;
 	
+	private String emailPesquisa;
+	
 	public void salva() {
 		if (contato.getId() == null) {
 			contatosBean.cadastra(contato);
@@ -71,16 +73,26 @@ public class IndexView implements Serializable {
 	}
 	
 	public void pesquisa() {
-		if (nomePesquisa == null || nomePesquisa.isBlank()) {
+		// Pesquisa por nome
+		if (nomePesquisa != null && !nomePesquisa.isBlank()) {
+			listaContatos = contatosBean.buscaPorNome(nomePesquisa);
 			FacesContext.getCurrentInstance().addMessage(null, 
-					new FacesMessage("É necessário informar um nome para pesquisa."));
-			return;
-		}
-		
-		listaContatos = contatosBean.buscaPorNome(nomePesquisa);
-		FacesContext.getCurrentInstance().addMessage(null, 
 				new FacesMessage(String.format("%d contato(s) encontrado(s).", 
 						listaContatos.size())));
+			return;
+		} 
+		
+		// Pesquisa por email
+		if (emailPesquisa != null && !emailPesquisa.isBlank()) {
+			listaContatos = contatosBean.buscaPorEmail(emailPesquisa);
+			FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage(String.format("%d contato(s) encontrado(s).", 
+						listaContatos.size())));
+			return;
+		} 
+		
+		FacesContext.getCurrentInstance().addMessage(null, 
+				new FacesMessage("É necessário informar o nome ou o email."));
 	}
 
 	public ContatosBean getContatosBean() {
@@ -114,5 +126,13 @@ public class IndexView implements Serializable {
 	public void setNomePesquisa(String nomePesquisa) {
 		this.nomePesquisa = nomePesquisa;
 	}
-		
+
+	public String getEmailPesquisa() {
+		return emailPesquisa;
+	}
+
+	public void setEmailPesquisa(String emailPesquisa) {
+		this.emailPesquisa = emailPesquisa;
+	}
+	
 }

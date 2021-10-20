@@ -49,5 +49,12 @@ public class ContatosBean {
 				.setParameter("nome", String.format("%%%s%%", nome.toUpperCase()))
 				.getResultList();
 	}
+	
+	public List<Contato> buscaPorEmail(String email) {
+		return entityManager
+				.createNamedQuery("Contato.findByEmail", Contato.class)
+				.setParameter("email", email.toUpperCase())
+				.getResultList();
+	}
 
 }

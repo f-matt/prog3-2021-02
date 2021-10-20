@@ -37,6 +37,9 @@
 		<h:panelGrid columns="2">
 			<h:outputLabel for="nomePesquisa" value="Nome:" /> 
 			<h:inputText id="nomePesquisa" value="#{indexView.nomePesquisa}" />
+			
+			<h:outputLabel for="emailPesquisa" value="Email:" /> 
+			<h:inputText id="emailPesquisa" value="#{indexView.emailPesquisa}" />
 		
 			<h:commandButton value="Pesquisar" 
 				action="#{indexView.pesquisa}">
