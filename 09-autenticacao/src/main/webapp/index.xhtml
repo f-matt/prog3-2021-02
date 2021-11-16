@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt_BR" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+	<h:head>
+		<meta charset="utf-8" />
+		<title>Autenticação</title>
+	</h:head>
+	
+	<h:body>
+		<h3>Seja bem vindo #{request.userPrincipal.name}!</h3>
+		
+		<ul>
+			<li>
+				<p:link outcome="/publico" value="Acesso público" />
+			</li>
+			<li>
+				<p:link outcome="/admin" value="Administração" />
+			</li>
+		</ul>
+		
+		<h:form>
+			<p:commandButton id="logout"
+				action="#{authView.logout}" 
+				value="Sair" />
+		</h:form>
+	</h:body>
+</html>

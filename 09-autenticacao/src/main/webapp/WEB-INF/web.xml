@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee 
+		http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="autenticacao" 
+	version="4.0">
+	
+	<welcome-file-list>
+		<welcome-file>index.jsf</welcome-file>
+	</welcome-file-list>
+	
+	<context-param>
+		<param-name>javax.faces.PROJECT_STAGE</param-name>
+		<param-value>Development</param-value>
+	</context-param>
+	
+	<security-constraint>
+    	<web-resource-collection>
+    		<web-resource-name>default</web-resource-name>
+        	<url-pattern>/*</url-pattern>
+    	</web-resource-collection>
+    	<auth-constraint/>
+	</security-constraint>
+	
+	<security-constraint>
+    	<web-resource-collection>
+    		<web-resource-name>anon</web-resource-name>
+        	<url-pattern>/javax.faces.resource/*</url-pattern>
+        	<url-pattern>/acesso-negado.jsf</url-pattern>
+        	<url-pattern>/publico.jsf</url-pattern>
+        	<url-pattern>/login.jsf</url-pattern>
+    	</web-resource-collection>
+	</security-constraint>
+
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>auth</web-resource-name>
+			<url-pattern>/index.jsf</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>USER</role-name>
+			<role-name>ADMIN</role-name>
+		</auth-constraint>
+	</security-constraint>
+	
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>admin</web-resource-name>
+			<url-pattern>/admin.jsf</url-pattern>
+		</web-resource-collection>
+		<auth-constraint>
+			<role-name>ADMIN</role-name>
+		</auth-constraint>
+	</security-constraint>
+
+	<security-role>
+		<role-name>USER</role-name>
+	</security-role>
+
+	<security-role>
+		<role-name>ADMIN</role-name>
+	</security-role>
+	
+	<error-page>
+		<error-code>403</error-code>
+		<location>/acesso-negado.jsf</location>
+	</error-page>
+</web-app>
